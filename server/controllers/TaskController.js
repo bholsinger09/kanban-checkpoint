@@ -5,14 +5,14 @@ import { Authorize } from '../middlewear/authorize'
 //import service and create an instance 
 let _service = new TaskService()
 let _repo = _service.repository
-// let _taskRepo = new TaskService().repository
+
 
 //PUBLIC
 export default class TaskController {
   constructor() {
     this.router = express.Router()
       .use(Authorize.authenticated)
-      // .get('/:id/task', this.getTasksByListId) //need to change to getTaskById?
+
       .post('', this.create)
       .put('/:id', this.edit)
       .delete('/:id', this.delete)

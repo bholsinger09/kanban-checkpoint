@@ -13,7 +13,7 @@ export default class BoardsController {
   constructor() {
     this.router = express.Router()
       .use(Authorize.authenticated)
-      .get('/:id/list', this.getListsByBoardId)
+      .get('/:id/lists', this.getListsByBoardId)
       .get('', this.getAll)
       .get('/:id', this.getById)
       .post('', this.create)

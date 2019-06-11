@@ -23,7 +23,7 @@ _schema.pre('remove', function (next) {
     .catch(err => next(err))
 })
 
-export default class BoardService {
+export default class ListService {
   get repository() {
     return mongoose.model('List', _schema)
   }
