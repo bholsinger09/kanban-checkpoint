@@ -1,21 +1,19 @@
-import BoardService from '../services/BoardService'
 import ListService from '../services/ListService'
+import TaskService from '../services/TaskService'
 import express from 'express'
 import { Authorize } from '../middlewear/authorize'
 
-//import service and create an instance
-let _service = new BoardService()
+//import service and create an instance 
+let _service = new ListService()
 let _repo = _service.repository
-let _listRepo = new ListService().repository
+let _taskRepo = new TaskService().repository
 
 //PUBLIC
-export default class BoardsController {
+export default class ListController {
   constructor() {
     this.router = express.Router()
       .use(Authorize.authenticated)
-      .get('/:id/list', this.getListsByBoardId)
-      .get('', this.getAll)
-      .get('/:id', this.getById)
+      .get('/:id/task', this.getTasksByListId)
       .post('', this.create)
       .put('/:id', this.edit)
       .delete('/:id', this.delete)
@@ -26,18 +24,9 @@ export default class BoardsController {
     next({ status: 404, message: 'No Such Route' })
   }
 
-  async getAll(req, res, next) {
+  async getTasksByListId(req, res, next) {
     try {
-      //only gets boards by user who is logged in
-      let data = await _repo.find({ authorId: req.session.uid })
-      return res.send(data)
-    }
-    catch (err) { next(err) }
-  }
-
-  async getById(req, res, next) {
-    try {
-      let data = await _repo.findOne({ _id: req.params.id, authorId: req.session.uid })
+      let data = await _taskRepo.find({ authorId: req.session.uid, listId: req.params.id })
       return res.send(data)
     } catch (error) { next(error) }
   }
@@ -67,14 +56,4 @@ export default class BoardsController {
     } catch (error) { next(error) }
   }
 
-  async getListsByBoardId(req, res, next) {
-    try {
-      let data = await _listRepo.find({ authorId: req.session.uid, boardId: req.params.id })
-      return res.send(data)
-
-    } catch (error) { next(error) }
-  }
-
-}
-
-
+} //close export
