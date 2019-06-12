@@ -22,17 +22,25 @@ let api = Axios.create({
 
 export default new Vuex.Store({
   state: {
-    user: {},
     boards: [],
+    lists: [],
+    tasks: [],
+    activeUser: {},
+    activeList: [],
+    activeTask: [],
     activeBoard: {}
   },
+
   mutations: {
-    setUser(state, user) {
-      state.user = user
+    setUser(state, activeUser) {
+      state.activeUser = activeUser
     },
     setBoards(state, boards) {
       state.boards = boards
-    }
+    },
+    setLists(state, data) {
+      state.lists = data
+    },
   },
   actions: {
     //#region -- AUTH STUFF --
@@ -68,6 +76,7 @@ export default new Vuex.Store({
       api.get('boards')
         .then(res => {
           commit('setBoards', res.data)
+          console.log('getBoards', res)
         })
     },
     addBoard({ commit, dispatch }, boardData) {
@@ -81,14 +90,30 @@ export default new Vuex.Store({
         .then(res => {
           dispatch('getBoards')
         })
-    }
-    //#endregion
+    },
+    //#endregion --Boards
+    //#region -- Lists
+    async getLists({ commit, dispatch }, payload) { // I made this
+      let res = await api.get('/boards/' + payload.boardId + '/lists/' + payload._id)
+      commit('setLists', res.data.results)
+      console.log('getLists', res.data)
+    }, //getTasks
 
+    //endregion --Lists
+    //#region -- TASKS
+    async getTasks({ commit, dispatch }, payload) { // I made this
+      let res = await api.get('/boards/' + payload.boardId + '/lists/' + payload.listId + '/tasks')
+      // commit('setTasks', res.data) do we need this
+      console.log('getTasks', res.data)
+    }, //getTasks
 
-    //#region -- LISTS --
+    async createComment({ commit, dispatch }, payload) { //I made this
+      let res = await api.put('/boards/' + payload.boardId + '/lists/' + payload.listId + '/tasks/' + payload.id)
+      dispatch('getTasks', payload._id)
+      // commit('setTasks', res.data) do we need this
+      console.log('createComment', res.data)
+    }, //createComments
 
-
-
-    //#endregion
+    //#enfregion -- Tasks
   }
 })
