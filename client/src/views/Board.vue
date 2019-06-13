@@ -1,10 +1,10 @@
 <template>
   <div class="board container-fluid">
-    <header>
+    <header class="row">
       <form class="new-list" @submit.prevent="createList">
-        <input type="text" class="form-control" placeholder="list title" v-model="newList.title" Required>
-        <input type="text" class="form-control" placeholder="description" v-model="newList.description" Required>
-        <button type="submit">Create List</button>
+        <input type="text" class="form-control col-5" placeholder="list title" v-model="newList.title" Required>
+        <input type="text" class="form-control col-5" placeholder="description" v-model="newList.description" Required>
+        <button type="submit" class="col-2">Create List</button>
       </form>
     </header>
     <div>

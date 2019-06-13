@@ -141,7 +141,6 @@ export default new Vuex.Store({
       }
     }, //deleteTask
     async updateTask({ commit, dispatch }, payload) {
-
       let res = await api.put('tasks/' + payload._id, payload)
       dispatch('getTasks', payload.listId)
       console.log('New Comment', res.data)
