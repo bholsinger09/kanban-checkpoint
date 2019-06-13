@@ -141,9 +141,10 @@ export default new Vuex.Store({
       }
     }, //deleteTask
     async updateTask({ commit, dispatch }, payload) {
-
       let res = await api.put('tasks/' + payload._id, payload)
       dispatch('getTasks', payload.listId)
+      dispatch('getTasks', payload.oldId)
+
       console.log('New Comment', res.data)
     }, //createComment
     async deleteComment({ commit, dispatch }, payload) {

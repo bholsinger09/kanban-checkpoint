@@ -1,7 +1,11 @@
 <template>
   <div class="boards">
 
-
+    <form @submit.prevent="addBoard">
+      <input type="text" placeholder="title" v-model="newBoard.title" required>
+      <input type="text" placeholder="description" v-model="newBoard.description">
+      <button type="submit">Create Board</button>
+    </form>
 
     <div style="height: auto; margin: 25px; min-width: 320px; max-width: 8%" class="card card-803 "
       v-for="board in boards" :key="board._id">
@@ -20,6 +24,13 @@
         {{board.authorId}} but in Purple
       </div>
     </div>
+<<<<<<< HEAD
+=======
+
+
+
+
+>>>>>>> d99d6fd3b4b1371614cd8a20278be5cc4f51df29
   </div>
 </template>
 

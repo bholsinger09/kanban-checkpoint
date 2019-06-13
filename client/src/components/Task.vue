@@ -1,6 +1,17 @@
 <template>
   <div class="Task">
     <h3>{{taskData.title}}</h3>
+    <button type="button" class="btn btn-secondary btn-sm">Move</button>
+    <button type="button" class="btn btn-secondary btn-sm dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"
+      aria-haspopup="true" aria-expanded="false">
+      <span class="sr-only">Toggle Dropdown</span>
+      </span>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <option class="dropdown-item" v-for="list in lists" :value="list._id" @click="moveTask(list._id)">
+          {{list.title}}</option>
+      </div>
+    </button>
+
     <!-- <h5>{{taskData.author}}</h5> -->
     <p>{{taskData.description}}</p>
     <div v-for="comment in taskData.comments" :commentData='comment'>
@@ -26,7 +37,16 @@
         newComment: {
           content: '',
           authorId: this.taskData.authorId
+        },
+        changeList: {
+          _id: this.taskData._id,
+          listId: ''
         }
+      }
+    },
+    computed: {
+      lists() {
+        return this.$store.state.lists
       }
     },
     methods: {
@@ -45,7 +65,14 @@
       deleteTask() {
         this.$store.dispatch("deleteTask", this.taskData)
         console.log('deleting task')
-      },
+      }, // deleteTask
+      moveTask(newId) {
+
+        this.taskData.oldId = this.taskData.listId
+        this.taskData.listId = newId
+        this.$store.dispatch("updateTask", this.taskData)
+        console.log('do a barrel roll')
+      }, //moveTask
     } //methods
   }
 </script>
