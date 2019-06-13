@@ -126,10 +126,11 @@ export default new Vuex.Store({
     }, //getTasks
 
     async createComment({ commit, dispatch }, payload) {
-      let res = await api.put('tasks' + payload.id)
+      debugger
+      let res = await api.put('tasks/' + payload._id, payload)
       dispatch('getTasks', payload.listId)
-      console.log('createComment', res.data)
-    }, //createComments
+      console.log('New Comment', res.data)
+    }, //createComment
 
     //#enfregion -- Tasks
   }

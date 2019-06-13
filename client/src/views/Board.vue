@@ -10,9 +10,9 @@
     <div>
       <h2>{{board.title}}</h2>
       <h4>{{board.description}}</h4>
-      {{board.id}}
+      <!--{{board.id}} ***-->
     </div>
-    <list v-for="list in lists" :listData='list' v-if="board._id" />
+    <list class="col-3" v-for="list in lists" :listData='list' v-if="board._id" />
   </div>
 </template>
 
@@ -55,3 +55,9 @@
     }
   };
 </script>
+
+<style>
+  .list-look {
+    background-color: black,
+  }
+</style>

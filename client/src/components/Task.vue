@@ -8,7 +8,6 @@
     </div>
 
     <form class="form" @submit.prevent="createComment" v-if="taskData._id">
-      <input type="text" class="form-control" placeholder="Name" v-model="newComment.authorId" Required>
       <input type="text" class="form-control" placeholder="Comment" v-model="newComment.content" Required>
       <button type="submit">add comment</button>
     </form>
@@ -23,19 +22,15 @@
     data() {
       return {
         newComment: {
-          authorId: '',
           content: '',
+          authorId: this.taskData.authorId
         }
       }
     },
-    computed: {
-      task() {
-        return
-      }
-    },
     methods: {
-      createCommment(data) {
-        this.$store.dispatch('createComment', data)
+      createComment() {
+        this.taskData.comments.push(this.newComment)
+        this.$store.dispatch('createComment', this.taskData)
       }
     }
   }
