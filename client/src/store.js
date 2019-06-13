@@ -117,11 +117,12 @@ export default new Vuex.Store({
     async deleteList({ commit, dispatch }, payload) {
       try {
         let res = await api.delete('lists/' + payload._id)
-        dispatch('getLists', payload.listId)
+        console.log(payload.listId)
+        dispatch('getLists', payload.boardId)
       } catch (error) {
         console.error(error)
       }
-    }, //deleteTask
+    }, //deleteList
     //endregion --Lists
     //#region -- TASKS
     async getTasks({ commit, dispatch }, listId) { //listId will need to be a listId

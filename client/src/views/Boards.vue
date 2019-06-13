@@ -21,16 +21,12 @@
       </div>
     </div>
 
-
-
-
-
-    WELCOME TO THE BOARDS!!!
-    <!-- <form @submit.prevent="addBoard">
+    !
+    <form @submit.prevent="addBoard">
       <input type="text" placeholder="title" v-model="newBoard.title" required>
       <input type="text" placeholder="description" v-model="newBoard.description">
       <button type="submit">Create Board</button>
-    </form> -->
+    </form>
 
   </div>
 </template>

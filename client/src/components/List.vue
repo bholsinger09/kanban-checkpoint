@@ -8,6 +8,7 @@
       <button type="submit">Create Task</button>
 
     </form>
+    <button @click="deleteList">Delete List</button>
   </div>
 </template>
 
@@ -44,6 +45,12 @@
     methods: {
       createTask() {
         this.$store.dispatch('createTask', this.newTask)
+      },
+
+      deleteList() {
+        console.log('deleting list')
+        this.$store.dispatch("deleteList", this.listData)
+
       }
     },
 
