@@ -24,13 +24,6 @@
         {{board.authorId}} but in Purple
       </div>
     </div>
-<<<<<<< HEAD
-=======
-
-
-
-
->>>>>>> d99d6fd3b4b1371614cd8a20278be5cc4f51df29
   </div>
 </template>
 
