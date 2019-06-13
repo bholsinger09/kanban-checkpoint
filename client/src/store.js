@@ -114,6 +114,14 @@ export default new Vuex.Store({
       dispatch('getTasks', payload.listId)
       console.log(' new Comment', res.data)
     },
+    async deleteList({ commit, dispatch }, payload) {
+      try {
+        let res = await api.delete('lists/' + payload._id)
+        dispatch('getLists', payload.listId)
+      } catch (error) {
+        console.error(error)
+      }
+    }, //deleteTask
     //endregion --Lists
     //#region -- TASKS
     async getTasks({ commit, dispatch }, listId) { //listId will need to be a listId
@@ -122,15 +130,26 @@ export default new Vuex.Store({
         listId: listId,
         tasks: res.data
       })
-      console.log('getTasks', res.data)
     }, //getTasks
+    async deleteTask({ commit, dispatch }, payload) {
+      try {
+        let res = await api.delete('tasks/' + payload._id)
+        dispatch('getTasks', payload.listId)
+      } catch (error) {
+        console.error(error)
+      }
+    }, //deleteTask
+    async updateTask({ commit, dispatch }, payload) {
 
-    async createComment({ commit, dispatch }, payload) {
-      debugger
       let res = await api.put('tasks/' + payload._id, payload)
       dispatch('getTasks', payload.listId)
       console.log('New Comment', res.data)
     }, //createComment
+    async deleteComment({ commit, dispatch }, payload) {
+      // let res = await api.put('tasks/' + payload._id, payload)
+      dispatch('getTasks', payload.listId)
+      console.log('Goodbye Comment')
+    }, //deleteComment
 
     //#enfregion -- Tasks
   }

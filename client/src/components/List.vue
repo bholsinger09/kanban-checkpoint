@@ -1,14 +1,20 @@
 <template>
   <div class="List">
-    <h1>{{listData.title}}</h1>
-    <h4>{{listData.authorId}}</h4>
+    <h2>{{listData.title}}</h2>
+    <!-- <h4>{{listData.authorId}}</h4> -->
     <task class="card" v-for="t in tasks" :taskData='t' />
     <form class="form" @submit.prevent="createTask" v-if="listData._id">
       <input type="text" class="form-control" placeholder="Name" v-model="newTask.title" Required>
-      <button type="submit">Create</button>
+      <button type="submit">Create Task</button>
+
     </form>
   </div>
 </template>
+
+
+
+
+
 
 
 
@@ -40,6 +46,7 @@
         this.$store.dispatch('createTask', this.newTask)
       }
     },
+
     components: {
       Task
     }
@@ -47,4 +54,13 @@
 </script>
 
 <style scoped>
+  .card {
+    background-color: #a15757;
+    color: whitesmoke;
+
+  }
+
+  .card h2 {
+    color: rgb(9, 255, 0);
+  }
 </style>

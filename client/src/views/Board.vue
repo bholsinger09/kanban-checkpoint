@@ -12,7 +12,9 @@
       <h4>{{board.description}}</h4>
       <!--{{board.id}} ***-->
     </div>
-    <list class="col-3" v-for="list in lists" :listData='list' v-if="board._id" />
+    <div class="row">
+      <list class="col-3" v-for="list in lists" :listData='list' v-if="board._id" />
+    </div>
   </div>
 </template>
 
@@ -58,6 +60,16 @@
 
 <style>
   .list-look {
-    background-color: black,
+    background-color: #1b1b1b;
+    color: #a300a3;
+
+  }
+
+  .list-look h1 {
+    color: red;
+  }
+
+  .list-look h1 {
+    color: rgb(255, 255, 255);
   }
 </style>
