@@ -2,7 +2,7 @@
   <div class="boards">
 
 
-
+    <!-- 
     <div style="height: auto; margin: 25px; min-width: 320px; max-width: 85%" class="card card-803 "
       v-for="board in boards" :key="board.id">
       <h3 class="title-color card-header">{{board.title}}</h3>
@@ -18,15 +18,13 @@
       <div style="-webkit-text-fill-color: blueviolet;" class="card-footer text-muted">
         {{board.authorId}} but in Purple
       </div>
-    </div>
+    </div> -->
 
 
 
 
 
-
-
-    <!-- WELCOME TO THE BOARDS!!!
+    WELCOME TO THE BOARDS!!!
     <form @submit.prevent="addBoard">
       <input type="text" placeholder="title" v-model="newBoard.title" required>
       <input type="text" placeholder="description" v-model="newBoard.description">
@@ -35,7 +33,7 @@
     <div v-for="board in boards" :key="board._id">
       <router-link :to="{name: 'board', params: {boardId: board._id}}">{{board.title}}</router-link>
       <button @click="deleteBoard(board._id)">DELETE BOARD</button>
-    </div> -->
+    </div>
   </div>
 </template>
 

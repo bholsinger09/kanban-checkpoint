@@ -12,7 +12,6 @@ export default class TaskController {
   constructor() {
     this.router = express.Router()
       .use(Authorize.authenticated)
-
       .post('', this.create)
       .put('/:id', this.edit)
       .delete('/:id', this.delete)

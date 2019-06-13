@@ -1,23 +1,18 @@
 <template>
   <div class="board container-fluid">
     <header>
-      <form class="new-list" @submit.prevent="createNewList(list)">
-        <input type="text" class="form-control" placeholder="list name" v-model="newList.authorId" Required>
-        <input type="text" class="form-control" placeholder="description" v-model="newList.content" Required>
+      <form class="new-list" @submit.prevent="createList">
+        <input type="text" class="form-control" placeholder="list title" v-model="newList.title" Required>
+        <input type="text" class="form-control" placeholder="description" v-model="newList.description" Required>
         <button type="submit">Create List</button>
       </form>
     </header>
-
-    <!-- https://bootswatch.com/lux/?optionsRadios=option1 -->
-
     <div>
-      {{board.title}}
-      {{board.description}}
+      <h2>{{board.title}}</h2>
+      <h4>{{board.description}}</h4>
       {{board.id}}
     </div>
-    <div v-for="list in lists" :listData='list' v-if="board._id">
-      </Lists>
-    </div>
+    <list v-for="list in lists" :listData='list' v-if="board._id" />
   </div>
 </template>
 
@@ -26,28 +21,37 @@
 
   export default {
     name: "board",
+    props: ["boardId"],
+    data() {
+      return {
+        newList: {
+          title: '',
+          description: '',
+          boardId: this.boardId
+        }
+      }
+    },
+    mounted() {
+      //dispatch to get board by id
+      this.$store.dispatch('getLists', this.boardId)
+    },
     components: {
       List
     },
     computed: {
       board() {
-        return (
-          this.$store.state.boards.find(b => b._id == this.boardId) || {
-            title: "Loading...",
-          },
-        );
+        return this.$store.state.boards.find(b => b._id == this.boardId) || {
+          title: "Loading...",
+        }
       },
-      lists() { //not 100% sure this is right, will have to connect
-        return this.$store.state.lists.find(b => b._id == this.boardId);  //this look like above?
+      lists() {
+        return this.$store.state.lists;  //this look like above?
       },
     },
-    props: ["boardId"],
     methods: {
-      createNewList(data) {
-        this.$store.dispatch('createNewList', data)
+      createList() {
+        this.$store.dispatch('createList', this.newList)
       }
     }
-
-
   };
 </script>

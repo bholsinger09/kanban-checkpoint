@@ -24,7 +24,7 @@ export default new Vuex.Store({
   state: {
     boards: [],
     lists: [],
-    tasks: [],
+    tasks: {},
     activeUser: {},
     activeList: [],
     activeTask: [],
@@ -41,6 +41,10 @@ export default new Vuex.Store({
     setLists(state, data) {
       state.lists = data
     },
+    setTasks(state, data) {
+      //state.tasks[data.listId] = data.tasks   <--- this wont work reactively
+      Vue.set(state.tasks, data.listId, data.tasks)
+    }
   },
   actions: {
     //#region -- AUTH STUFF --
@@ -91,26 +95,39 @@ export default new Vuex.Store({
           dispatch('getBoards')
         })
     },
+    async createList({ commit, dispatch }, payload) {
+      let res = await api.post('lists', payload)
+      dispatch('getLists', payload.boardId)
+      // commit('setTasks', res.data) do we need this
+      console.log('createList', res.data)
+    }, //createList
     //#endregion --Boards
-    //#region -- Lists
-    async getLists({ commit, dispatch }, payload) { // I made this
-      let res = await api.get('/boards/' + payload.boardId + '/lists/' + payload._id)
-      commit('setLists', res.data.results)
-      console.log('getLists', res.data)
-    }, //getTasks
 
+    //#region -- Lists
+    async getLists({ commit, dispatch }, payload) {
+      let res = await api.get('boards/' + payload + '/lists')
+      console.log('got Lists', res.data)
+      commit('setLists', res.data)
+    },
+    async createTask({ commit, dispatch }, payload) {
+      let res = await api.post('tasks', payload)
+      dispatch('getTasks', payload.listId)
+      console.log(' new Comment', res.data)
+    },
     //endregion --Lists
     //#region -- TASKS
-    async getTasks({ commit, dispatch }, payload) { // I made this
-      let res = await api.get('/boards/' + payload.boardId + '/lists/' + payload.listId + '/tasks')
-      // commit('setTasks', res.data) do we need this
+    async getTasks({ commit, dispatch }, listId) { //listId will need to be a listId
+      let res = await api.get('lists/' + listId + '/tasks')
+      commit('setTasks', {
+        listId: listId,
+        tasks: res.data
+      })
       console.log('getTasks', res.data)
     }, //getTasks
 
-    async createComment({ commit, dispatch }, payload) { //I made this
-      let res = await api.put('/boards/' + payload.boardId + '/lists/' + payload.listId + '/tasks/' + payload.id)
-      dispatch('getTasks', payload._id)
-      // commit('setTasks', res.data) do we need this
+    async createComment({ commit, dispatch }, payload) {
+      let res = await api.put('tasks' + payload.id)
+      dispatch('getTasks', payload.listId)
       console.log('createComment', res.data)
     }, //createComments
 

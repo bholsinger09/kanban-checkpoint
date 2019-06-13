@@ -1,36 +1,47 @@
 <template>
   <div class="List">
-    <h1>{{list.title}}</h1>
-    <h4>{{list.authorId}}</h4>
-    <div class="card" v-for="task in tasks" :taskData='task'>
-      </Task>
-    </div>
+    <h1>{{listData.title}}</h1>
+    <h4>{{listData.authorId}}</h4>
+    <task class="card" v-for="t in tasks" :taskData='t' />
+    <form class="form" @submit.prevent="createTask" v-if="listData._id">
+      <input type="text" class="form-control" placeholder="Name" v-model="newTask.title" Required>
+      <button type="submit">Create</button>
+    </form>
   </div>
-
 </template>
 
 
 
 <script>
-  import Tasks from '@/components/Task.vue'
+  import Task from '@/components/Task.vue'
   export default {
     name: 'List',
-    // props: {
-    //   id: id
-    // },
+    props: ['listData'],
     data() {
       return {
-
+        newTask: {
+          title: '',
+          listId: this.listData._id,
+          boardId: this.listData.boardId
+        }
       }
     },
     mounted() {
-      this.$store.dispatch('getLists', this.id)
+      this.$store.dispatch('getTasks', this.listData._id)
       //need tasks??
     },
     computed: {
-      lists() {
-        this.$store.state.lists
+      tasks() {
+        return this.$store.state.tasks[this.listData._id]
       }
+    },
+    methods: {
+      createTask() {
+        this.$store.dispatch('createTask', this.newTask)
+      }
+    },
+    components: {
+      Task
     }
   }
 </script>
