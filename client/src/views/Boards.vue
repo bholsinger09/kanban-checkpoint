@@ -13,21 +13,13 @@
       </div>
 
       <div class="card-body">
-        <button class="btn btn-info rounded-pill ">You like this</button>
-        <button @click="deleteBoard(board._id)" class="btn btn-danger rounded-pill ">You like this, but in Red</button>
+        <!-- <button class="btn btn-info rounded-pill ">You like this</button> -->
+        <button @click="deleteBoard(board._id)" class="btn btn-secondary rounded ">Delete</button>
       </div>
       <div style="-webkit-text-fill-color: blueviolet;" class="card-footer text-muted">
         {{board.authorId}} but in Purple
       </div>
     </div>
-
-    !
-    <form @submit.prevent="addBoard">
-      <input type="text" placeholder="title" v-model="newBoard.title" required>
-      <input type="text" placeholder="description" v-model="newBoard.description">
-      <button type="submit">Create Board</button>
-    </form>
-
   </div>
 </template>
 
