@@ -9,7 +9,7 @@ let _taskRepo = new TaskService().repository
 
 let _schema = new Schema({
   title: { type: String, required: true },
-  description: { type: String, required: true },
+  description: { type: String, required: true, default: "No desc" },
   authorId: { type: ObjectId, ref: 'User', required: true }
 }, { timestamps: true })
 

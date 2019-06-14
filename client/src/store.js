@@ -65,6 +65,15 @@ export default new Vuex.Store({
           router.push({ name: 'login' })
         })
     },
+    logOut({ commit, dispatch }) {
+      auth.delete('/logout')
+        .then(res => {
+          router.push({name: 'login'})
+          console.log('logout res', res)
+        }).catch(err => {
+          console.error(err)
+        })
+    },
     login({ commit, dispatch }, creds) {
       auth.post('login', creds)
         .then(res => {
