@@ -45,6 +45,7 @@
     methods: {
       createTask() {
         this.$store.dispatch('createTask', this.newTask)
+        this.newTask = { title: "" };
       },
 
       deleteList() {

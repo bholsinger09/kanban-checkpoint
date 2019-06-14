@@ -42,20 +42,6 @@
             <button style="width: 100%" class="btn btn-secondary my-2 my-sm-0" type="submit">Create</button>
           </form>
         </button>
-        <button v-if="!this.$store.state.activeUser"
-          class="fancy-pancy-create-button btn btn-sm btn-secondary nav-item dropdown">
-          <a style="width: 100%; height: 100%;" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"
-            role="button" aria-haspopup="true" aria-expanded="false">Sign in</a>
-          <form v-if="loginForm" @submit.prevent="loginUser">
-            <input type="email" v-model="creds.email" placeholder="email">
-            <input type="password" v-model="creds.password" placeholder="password">
-            <button type="submit">Login</button>
-            <div class="dropdown-divider"></div>
-            <button style="width: 100%" class="btn btn-secondary my-2 my-sm-0" type="submit">Sign in</button>
-            <div class="dropdown-divider"></div>
-            <button class="btn btn-success btn-sm"></button>
-          </form>
-        </button>
         <button class="btn btn-sm btn-secondary" @click="logOut()">F</button>
       </div>
     </nav>
