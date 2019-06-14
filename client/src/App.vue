@@ -28,31 +28,35 @@
             <router-link style="color: #fffb00;" class="nav-link" to="/about">Michael</router-link>
           </li>
         </ul>
-        <button v-if="this.$store.state.activeUser" class="fancy-pancy-create-button btn btn-sm btn-secondary nav-item dropdown">
-          <a style="width: 100%; height: 100%;" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-            aria-expanded="false">Create New</a>
+        <button v-if="this.$store.state.activeUser"
+          class="fancy-pancy-create-button btn btn-sm btn-secondary nav-item dropdown">
+          <a style="width: 100%; height: 100%;" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"
+            role="button" aria-haspopup="true" aria-expanded="false">Create New</a>
           <form @submit.prevent="addBoard" class="dropdown-menu" x-placement="bottom-start"
             style="position: absolute; transform: translate3d(0px, 45px, 0px); top: 0px; left: 0px; will-change: transform;">
-            <input class="form-control mr-sm-2" style="margin-bottom: 5px;" type="text" placeholder="title" v-model="newBoard.title" required>
-            <input class="form-control mr-sm-2" style="margin-bottom: 5px;" type="text" placeholder="description" v-model="newBoard.description">
+            <input class="form-control mr-sm-2" style="margin-bottom: 5px;" type="text" placeholder="title"
+              v-model="newBoard.title" required>
+            <input class="form-control mr-sm-2" style="margin-bottom: 5px;" type="text" placeholder="description"
+              v-model="newBoard.description">
             <div class="dropdown-divider"></div>
             <button style="width: 100%" class="btn btn-secondary my-2 my-sm-0" type="submit">Create</button>
           </form>
         </button>
-        <button v-if="!this.$store.state.activeUser" class="fancy-pancy-create-button btn btn-sm btn-secondary nav-item dropdown">
-          <a style="width: 100%; height: 100%;" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-            aria-expanded="false">Sign in</a>
-            <form v-if="loginForm" @submit.prevent="loginUser">
-              <input type="email" v-model="creds.email" placeholder="email">
-              <input type="password" v-model="creds.password" placeholder="password">
-              <button type="submit">Login</button>
+        <button v-if="!this.$store.state.activeUser"
+          class="fancy-pancy-create-button btn btn-sm btn-secondary nav-item dropdown">
+          <a style="width: 100%; height: 100%;" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"
+            role="button" aria-haspopup="true" aria-expanded="false">Sign in</a>
+          <form v-if="loginForm" @submit.prevent="loginUser">
+            <input type="email" v-model="creds.email" placeholder="email">
+            <input type="password" v-model="creds.password" placeholder="password">
+            <button type="submit">Login</button>
             <div class="dropdown-divider"></div>
             <button style="width: 100%" class="btn btn-secondary my-2 my-sm-0" type="submit">Sign in</button>
             <div class="dropdown-divider"></div>
             <button class="btn btn-success btn-sm"></button>
           </form>
         </button>
-<button class="btn btn-sm btn-secondary" @click="logOut()">F</button>
+        <button class="btn btn-sm btn-secondary" @click="logOut()">F</button>
       </div>
     </nav>
     <router-view />
@@ -95,7 +99,7 @@
         this.newBoard = { title: "", description: "" };
       },
       logOut() {
-        this.$store.state.activeUser = {}
+        this.$store.dispatch("logOut")
       }
     },
   };
@@ -129,5 +133,18 @@
 
   a {
     color: #42b983;
+  }
+
+  #bg-image-whole-pg {
+    background: none;
+  }
+
+  html {
+    background-image: url('../Assets/Abstract-Flower-Backgrounds.jpg');
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-attachment: fixed;
   }
 </style>
