@@ -1,5 +1,6 @@
 <template>
   <div class="app">
+
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
       <router-link class="navbar-brand" to="/">Life Organiser</router-link>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
@@ -46,6 +47,7 @@
           class="fancy-pancy-create-button btn btn-sm btn-secondary nav-item dropdown">
           <a style="width: 100%; height: 100%;" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"
             role="button" aria-haspopup="true" aria-expanded="false">Sign in</a>
+
           <form v-if="loginForm" @submit.prevent="loginUser">
             <input type="email" v-model="creds.email" placeholder="email">
             <input type="password" v-model="creds.password" placeholder="password">
@@ -56,10 +58,11 @@
             <button class="btn btn-success btn-sm"></button>
           </form>
         </button>
-        <button class="btn btn-sm btn-secondary" @click="logOut()">F</button>
+        <button class="btn btn-sm btn-secondary" @click="logOut()">logout</button>
       </div>
     </nav>
     <router-view />
+  </div>
   </div>
 </template>
 
@@ -67,6 +70,7 @@
   import router from '@/router.js'
   export default {
     name: "App",
+
 
     data() {
       return {

@@ -1,4 +1,5 @@
 <template>
+  <!--registered codemonkey  -- code@monkey.com  -- password Frittos-->
   <div class="login">
     <form v-if="loginForm" @submit.prevent="loginUser">
       <input type="email" v-model="creds.email" placeholder="email">

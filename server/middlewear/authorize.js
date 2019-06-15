@@ -10,3 +10,8 @@ export class Authorize {
         next()
     }
 }
+
+//registered :
+// name: code monkey
+// email: code@monkey.com
+// password: Frittos
