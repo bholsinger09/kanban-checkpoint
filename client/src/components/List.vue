@@ -4,7 +4,7 @@
     <!-- <h4>{{listData.authorId}}</h4> -->
     <task class="card" v-for="task in tasks" :taskData='task' />
     <form class="form" @submit.prevent="createTask" v-if="listData._id">
-      <input type="text" class="form-control mr-sm-2" placeholder="Name" v-model="newTask.title" Required>
+      <input type="text" class="form-control mr-sm-2" placeholder="Task Name" v-model="newTask.title" Required>
       <button type="submit">Create Task</button>
 
     </form>
@@ -39,6 +39,7 @@
     methods: {
       createTask() {
         this.$store.dispatch('createTask', this.newTask)
+        this.newTask = { title: "" };
       },
 
       deleteList() {
