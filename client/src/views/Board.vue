@@ -49,7 +49,7 @@
     methods: {
       createList() {
         this.$store.dispatch('createList', this.newList)
-        //   this.newList.title = ''
+        this.newList = { title: "" };
 
       }
     }
