@@ -6,32 +6,20 @@
         <input type="text" placeholder="description" v-model="newBoard.description">
         <button type="submit">Create Board</button>
       </form>
+      <!--board component below-->
       <div class="row">
-        <div class="col-3">
-          <div style="height: auto; margin: 25px; min-width: 320px; max-width: 8%" class="card card-803 "
-            v-for="board in boards" :key="board._id">
+        <Board />
 
-            <router-link class="title-color card-header" :to="{name: 'board', params: {boardId: board._id}}">
-              <h5>Board Title: {{board.title}}</h5>
-            </router-link>
-            <h6 class="board-creator">Board By:</h6>
-            <div class="card-body">
-              <p class=" body-color card-text"> Board Description: {{board.description}}</p>
-            </div>
-            <div class="card-body">
-              <button @click="deleteBoard(board._id)" class="btn btn-primary rounded">Delete</button>
-            </div>
-
-          </div>
-        </div>
-        <div class="col-3"></div>
 
       </div>
     </div>
   </div>
 </template>
 
+
+
 <script>
+  import Board from '@/components/Board.vue'
   export default {
     name: "boards",
 
@@ -52,20 +40,18 @@
     mounted() {
       this.$store.dispatch("getBoards");
     },
-    computed: {
-      boards() {
-        return this.$store.state.boards;
-      }
+
+    components: {
+      Board
     },
     methods: {
       addBoard() {
         this.$store.dispatch("addBoard", this.newBoard);
         this.newBoard = { title: "", description: "" };
       },
-      deleteBoard(boardId) {
-        this.$store.dispatch("deleteBoard", boardId);
-      }
-    }
+
+    },
+
   };
 </script>
 

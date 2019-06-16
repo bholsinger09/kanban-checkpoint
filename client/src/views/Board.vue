@@ -1,16 +1,14 @@
 <template>
   <div class="board container-fluid">
-    <!-- <header class="row"> -->
+
     <form class="new-list row" @submit.prevent="createList">
       <input type="text" class="form-control col-4 offset-1" placeholder="list title" v-model="newList.title" Required>
       <!-- <input type="text" class="form-control col-4 offset-1" placeholder="description" v-model="newList.description" Required> -->
       <button type="submit" class="col-1 btn btn-secondary btn-md rounded">Create List</button>
     </form>
-    <!-- </header> -->
     <div>
       <h2>{{board.title}}</h2>
       <h4>{{board.description}}</h4>
-      <!--{{board.id}} ***-->
     </div>
     <div class="row">
       <list class="col-3" v-for="list in lists" :listData='list' v-if="board._id" />
@@ -28,7 +26,6 @@
       return {
         newList: {
           title: '',
-          description: '',
           boardId: this.boardId
         }
       }
@@ -52,9 +49,10 @@
     },
     methods: {
       createList() {
+        debugger
         this.$store.dispatch('createList', this.newList)
         this.newList.title = ''
-        this.newList.description = ''
+
       }
     }
   };
