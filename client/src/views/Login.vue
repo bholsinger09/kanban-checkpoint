@@ -19,6 +19,8 @@
 </template>
 
 <script>
+  //registered
+  //email : code@monkey.com  password: Frittos
   import router from '@/router.js'
   export default {
     name: "login",
