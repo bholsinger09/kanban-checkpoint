@@ -10,8 +10,10 @@
 
     </div>
     <div class="row">
-      <div class="col-12">
-        <h2>{{board.title}}</h2>
+      <div class="col-12 boardInfo">
+        <h6>Title of Board:</h6>
+        <h3>{{board.title}}</h3>
+        <h6>Board Description : </h6>
         <h4>{{board.description}}</h4>
       </div>
 
@@ -65,6 +67,10 @@
 </script>
 
 <style scoped>
+  .boardInfo {
+    margin-left: 35%;
+  }
+
   .createButton {
     margin-left: 3rem;
   }
