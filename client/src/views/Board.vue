@@ -1,14 +1,22 @@
 <template>
   <div class="board container-fluid">
-    <form class="new-list row" @submit.prevent="createList">
-      <input type="text" class="form-control col-4 offset-1" placeholder="list title" v-model="newList.title" Required>
-      <button type="submit" class="col-1 btn btn-secondary btn-md rounded">Create List</button>
-    </form>
+    <div class="row">
+      <div class="form-group">
+        <form class="listCreator" @submit.prevent="createList">
+          <input type="text" class="form-control " placeholder="list title" v-model="newList.title" Required>
+          <button type="submit" class="btn btn-secondary createButton rounded">Create List</button>
+        </form>
+      </div>
 
-    <div>
-      <h2>{{board.title}}</h2>
-      <h4>{{board.description}}</h4>
     </div>
+    <div class="row">
+      <div class="col-12">
+        <h2>{{board.title}}</h2>
+        <h4>{{board.description}}</h4>
+      </div>
+
+    </div>
+
     <div class="row">
       <list class="col-3" v-for="list in lists" :listData='list' v-if="board._id" />
     </div>
@@ -57,17 +65,13 @@
 </script>
 
 <style scoped>
-  .list-look {
-    background-color: #1b1b1b;
-    color: #a300a3;
+  .createButton {
+    margin-left: 3rem;
   }
 
-  .list-look h1 {
-    color: red;
-  }
-
-  .list-look h1 {
-    color: rgb(255, 255, 255);
+  .form-group {
+    justify-content: center;
+    margin-left: 30%;
   }
 
   .form-control {
