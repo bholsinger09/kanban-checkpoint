@@ -8,6 +8,9 @@ Vue.use(Router)
 
 export default new Router({
   routes: [
+    // TODO: Add a landing page route
+    // FIXME: There is no about page yet you have links that 
+    //  -- FIXME: are pointing to the about page in app.vue
     {
       path: '/',
       name: 'boards',
@@ -17,6 +20,7 @@ export default new Router({
       path: '/board/:boardId',
       name: 'board',
       props: true,
+      //TODO: add a route guard
       component: Board
     },
     {

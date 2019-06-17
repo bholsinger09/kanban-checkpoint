@@ -20,6 +20,10 @@ let api = Axios.create({
   withCredentials: true
 })
 
+// NOTE: be uniform in async await or promises but dont mix both
+// NOTE: remove all console.log prior to publishing
+// NOTE: be sure to always use try catch with async
+
 export default new Vuex.Store({
   state: {
     boards: [],
@@ -68,7 +72,7 @@ export default new Vuex.Store({
     logOut({ commit, dispatch }) {
       auth.delete('/logout')
         .then(res => {
-          router.push({name: 'login'})
+          router.push({ name: 'login' })
           console.log('logout res', res)
         }).catch(err => {
           console.error(err)

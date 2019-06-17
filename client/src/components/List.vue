@@ -29,7 +29,6 @@
     },
     mounted() {
       this.$store.dispatch('getTasks', this.listData._id)
-
     },
     computed: {
       tasks() {
@@ -38,6 +37,8 @@
     },
     methods: {
       createTask() {
+        this.listId = this.listData._id
+        this.boardId = this.listData.boardId
         this.$store.dispatch('createTask', this.newTask)
         this.newTask = { title: "" };
       },
@@ -45,7 +46,6 @@
       deleteList() {
         console.log('deleting list')
         this.$store.dispatch("deleteList", this.listData)
-
       }
     },
 

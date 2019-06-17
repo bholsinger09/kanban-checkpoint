@@ -36,7 +36,7 @@
       return {
         newComment: {
           content: '',
-          authorId: this.taskData.authorId
+          authorId: this.taskData.authorId // this should be handled on the server never the client
         },
         changeList: {
           _id: this.taskData._id,
@@ -50,6 +50,7 @@
       }
     },
     methods: {
+      // NOTE: Remove unecessary comments
       createComment() {
         this.taskData.comments.push(this.newComment)
         this.$store.dispatch('updateTask', this.taskData)
@@ -83,6 +84,5 @@
   .Task {
     background-color: #773535;
     color: whitesmoke;
-
   }
 </style>

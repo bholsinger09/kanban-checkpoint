@@ -76,6 +76,7 @@
     background-color: rgba(85, 1, 163, 0.226);
   }
 
+  /* FIXME:  bad name for a css class */
   .mix-a-lot {
     -webkit-text-fill-color: deepskyblue;
   }

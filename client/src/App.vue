@@ -1,6 +1,7 @@
 <template>
   <div class="app">
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <!-- FIXME : Organizer -->
       <router-link class="navbar-brand" to="/">Life Organiser</router-link>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
         aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
@@ -13,6 +14,7 @@
             <router-link class="nav-link" to="/boards">Boards <span class="sr-only">(current)</span></router-link>
           </li>
           <li class="nav-item">
+            <!-- FIXME : THERE IS NO ABOUT PAGE IN THE ROUTER SO THESE ALL FAIL -->
             <router-link style="color: #e500fa;" class="nav-link" to="/about">Micaiah</router-link>
           </li>
           <li class="nav-item">
@@ -28,6 +30,8 @@
             <router-link style="color: #fffb00;" class="nav-link" to="/about">Michael</router-link>
           </li>
         </ul>
+        <!-- FIXME: Putting a form inside of a button is invalid HTML Structure this is why the spacebar closes the form -->
+        <!-- NOTE: activeUser is always defined so look for a property on activeUser -->
         <button v-if="this.$store.state.activeUser"
           class="fancy-pancy-create-button btn btn-sm btn-secondary nav-item dropdown">
           <a style="width: 100%; height: 100%;" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"
@@ -42,6 +46,7 @@
             <button style="width: 100%" class="btn btn-secondary my-2 my-sm-0" type="submit">Create</button>
           </form>
         </button>
+        <!-- NOTE: Hide this button if not logged in again look for a property on the user -->
         <button class="btn btn-sm btn-secondary" @click="logOut()">logout</button>
       </div>
     </nav>
@@ -73,6 +78,14 @@
         }
       }
     },
+
+    /*
+    NOTE: 
+    add a computed property to look for the user
+    then use v-if="user._id" to show and hide buttons like 
+    logout, create new 
+    */
+
     methods: {
       register() {
         this.$store.dispatch("register", this.newUser);
@@ -84,6 +97,7 @@
         this.$store.dispatch("addBoard", this.newBoard);
         this.newBoard = { title: "", description: "" };
       },
+      // NOTE: logout is usually one word so dont capitalize the o
       logOut() {
         this.$store.dispatch("logOut")
       }
@@ -92,6 +106,7 @@
 </script>
 
 <style>
+  /* NOTE: dont use names like this for styling it is not informative */
   .fancy-pancy-create-button {
     color: rgba(255, 0, 221, 0.541)
   }

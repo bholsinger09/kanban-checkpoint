@@ -21,6 +21,7 @@
 <script>
   //registered
   //email : code@monkey.com  password: Frittos
+  // TODO: dont leave comments like login info in the app
   import router from '@/router.js'
   export default {
     name: "login",

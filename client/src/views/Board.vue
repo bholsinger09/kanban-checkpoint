@@ -35,7 +35,6 @@
       return {
         newList: {
           title: '',
-          boardId: this.boardId
         }
       }
     },
@@ -58,15 +57,16 @@
     },
     methods: {
       createList() {
+        this.newList.boardId = this.boardId;
         this.$store.dispatch('createList', this.newList)
         this.newList = { title: "" };
-
       }
     }
   };
 </script>
 
 <style scoped>
+  /* NOTE: use hyphens not camel casing */
   .boardInfo {
     margin-left: 35%;
   }
