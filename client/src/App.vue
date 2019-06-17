@@ -42,7 +42,7 @@
             <button style="width: 100%" class="btn btn-secondary my-2 my-sm-0" type="submit">Create</button>
           </form>
         </button>
-        <button class="btn btn-sm btn-secondary" @click="logOut()">F</button>
+        <button class="btn btn-sm btn-secondary" @click="logOut()">log out</button>
       </div>
     </nav>
     <router-view />
